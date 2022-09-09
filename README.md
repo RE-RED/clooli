@@ -6,7 +6,7 @@ O vazamento de um gás, feito em laboratório, provoca pânico e terror sobre a 
 
  - Série: Sweet Home.
 
-  ## Aplicação ideal:
+## Aplicação ideal:
 
 Jogo de suspense estilo RPG em texto.
 
