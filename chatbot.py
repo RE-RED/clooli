@@ -18,20 +18,44 @@ estados = {
         }
     },
     1: {
-        'frases': ['Olá!', 'Tudo bem, como vai?'],
+        'frases': [' - ...droga...! (Escreva "1" para continuar)'],
         'proximos_estados': {
-            'sim': 2,
-            'não': 3
+            '1': 2
         }
     },
     2: {
-        'frases': ['Era uma vez...', 'E lá de volta outra vez...'],
+        'frases': [' - Esqueci de desligar... ("1" para continuar)'],
         'proximos_estados': {
-            'não': 3
+            '1': 3
         }
     },
     3: {
-        'frases': ['Fim do jogo!', 'Parabéns!'],
+        'frases': [' - Talvez eu deva dormir novamente... (ESCOLHA: "Levantar" ou "Dormir"' ],
+        'proximos_estados': {
+            'Levantar': 4,
+            'Dormir': 5
+        }
+    },
+    4: {
+        'frases': ['Você levanta e vai até a cozinha. - Bom dia mãe! ("1" para continuar)'],
+        'proximos_estados': {
+            '1': 8 
+        }
+    },
+    5: {
+        'frases': ['... ("1" para continuar)'],
+        'proximos_estados': {
+            '1': 7
+        }
+    },
+    7: {
+        'frases': ['Que droooga, agora não consigo dormir mais. ("1" para continuar)'],
+        'proximos_estados': {
+            '1': 4
+        }
+    },
+    8: {
+        'frases': ['Fim do jogo!'],
         'proximos_estados': {
             'reiniciar': 1
         }
@@ -61,7 +85,7 @@ async def on_message(msg):
     if autor not in partidas:
         partidas[autor] = 0
     #
-    # Em ordem de operação:
+    # Em ordem de operação:, 'Parabéns!'
     # 0) Obter o estado atual do jogador:
     #    partidas[autor]
     # 1) Obter a definição completa desse estado:
