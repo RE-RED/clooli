@@ -18,38 +18,38 @@ estados = {
         }
     },
     1: {
-        'frases': [' - ...droga...! (Escreva "1" para continuar)'],
+        'frases': ['??? \n - ...droga...! \n(Escreva "1" para continuar)'],
         'proximos_estados': {
             '1': 2
         }
     },
     2: {
-        'frases': [' - Esqueci de desligar... ("1" para continuar)'],
+        'frases': ['??? \n - Esqueci de desligar... \n("1" para continuar)'],
         'proximos_estados': {
             '1': 3
         }
     },
     3: {
-        'frases': [' - Talvez eu deva dormir novamente... (ESCOLHA: "Levantar" ou "Dormir"' ],
+        'frases': ['??? \n - Talvez eu deva dormir novamente... \n(ESCOLHA: "Levantar" ou "Dormir"' ],
         'proximos_estados': {
             'Levantar': 4,
             'Dormir': 5
         }
     },
     4: {
-        'frases': ['Você levanta e vai até a cozinha. - Bom dia mãe! ("1" para continuar)'],
+        'frases': ['Você levanta e vai até a cozinha. \n??? \n - Bom dia mãe! \n("1" para continuar)'],
         'proximos_estados': {
             '1': 8 
         }
     },
     5: {
-        'frases': ['... ("1" para continuar)'],
+        'frases': ['... \n("1" para continuar)'],
         'proximos_estados': {
             '1': 7
         }
     },
     7: {
-        'frases': ['Que droooga, agora não consigo dormir mais. ("1" para continuar)'],
+        'frases': ['??? \n -Que droooga, agora não consigo dormir mais. \n("1" para continuar)'],
         'proximos_estados': {
             '1': 4
         }
