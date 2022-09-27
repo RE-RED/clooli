@@ -14,41 +14,41 @@ estados = {
     0: {
         'frases': ['Digite "iniciar" para começar o jogo.'],
         'proximos_estados': {
-            '[iI]niciar': 0.5
+            '[iI]niciar': 1
         }
     },
-    0.5: {'frases': ['Durante o jogo, digite 1 para seguir em frente, e 2 para voltar a frase anterior.'],
+    1: {'frases': ['Durante o jogo, digite 1 para seguir em frente, e 2 para voltar a frase anterior.'],
         'proximos_estados': {
-            '1': 1,
+            '1': 2,
             '2': 0
         }
     },
-    1: {
-        'frases': ['??? \n - ...droga...! \n(Escreva "1" para continuar)'],
-        'proximos_estados': {
-            '1': 2
-        }
-    },
     2: {
-        'frases': ['??? \n - Esqueci de desligar... \n("1" para continuar)'],
+        'frases': ['??? \n - ...droga...! \n(Escreva "1" para continuar)'],
         'proximos_estados': {
             '1': 3
         }
     },
     3: {
-        'frases': ['??? \n - Talvez eu deva dormir novamente... \n(ESCOLHA: "Levantar" ou "Dormir"' ],
+        'frases': ['??? \n - Esqueci de desligar... \n("1" para continuar)'],
         'proximos_estados': {
-            'Levantar': 4,
-            'Dormir': 5
+            '1': 4
         }
     },
     4: {
+        'frases': ['??? \n - Talvez eu deva dormir novamente... \n(ESCOLHA: "Levantar" ou "Dormir"' ],
+        'proximos_estados': {
+            'Levantar': 5,
+            'Dormir': 6
+        }
+    },
+    5: {
         'frases': ['Você levanta e vai até a cozinha. \n??? \n - Bom dia mãe! \n("1" para continuar)'],
         'proximos_estados': {
             '1': 8 
         }
     },
-    5: {
+    6: {
         'frases': ['... \n("1" para continuar)'],
         'proximos_estados': {
             '1': 7
@@ -57,7 +57,7 @@ estados = {
     7: {
         'frases': ['??? \n -Que droooga, agora não consigo dormir mais. \n("1" para continuar)'],
         'proximos_estados': {
-            '1': 4
+            '1': 5
         }
     },
     8: {
