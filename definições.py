@@ -70,8 +70,9 @@ estados = {
         }
     },
     10: {
-        'frases': ['Mãe:\n - Eu pasVoltando você espera no sinal, e percebe que uma neblina se aproxima. Não era um evento estranho. Esse fenômeno tende a acontecer bastante na região'],
+        'frases': ['Mãe:\n - Eu passei naquela entrevista, e começo hoje!'],
         'proximos_estados': {
+            '[sS]eguir?': 1,
             '[rR]etornar?': 9
         }
     },
