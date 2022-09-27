@@ -147,7 +147,7 @@ estados = {
             '[rR]etornar?': 16
         }
     },
-    2: {
+    21: {
         'frases': ['Reiniciar'],
         'proximos_estados': {
             'reiniciar': 2
