@@ -150,7 +150,7 @@ estados = {
     2: {
         'frases': ['Reiniciar'],
         'proximos_estados': {
-            'reiniciar': 1
+            'reiniciar': 2
         }
     }
 }
