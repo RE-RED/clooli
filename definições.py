@@ -147,6 +147,12 @@ estados = {
             '[rR]etornar?': 16
         }
     },
+    2: {
+        'frases': ['Reiniciar'],
+        'proximos_estados': {
+            'reiniciar': 1
+        }
+    }
 }
 
 # Dicionário com os estados correntes de cada jogador.
