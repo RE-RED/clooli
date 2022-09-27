@@ -14,7 +14,7 @@ estados = {
     0: {
         'frases': ['Digite "iniciar" para começar o jogo.'],
         'proximos_estados': {
-            '[iI]niciar': 1
+            'iniciar': 1
         }
     },
     1: {'frases': ['Durante o jogo, digite 1 para seguir em frente, e 2 para voltar a frase anterior.'],
