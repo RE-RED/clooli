@@ -140,7 +140,7 @@ estados = {
         }
     },
     20: {
-        'frases': ['Ela começa a gritar. Aterrorizada pede por ajuda enquanto grita '],
+        'frases': ['Ela começa a gritar. Aterrorizada pede por ajuda enquanto seus olhos ficam cada vez mais vermelhos'],
         'proximos_estados': {
             '[sS]eguir?': 21,
             '[rR]etornar?': 16
