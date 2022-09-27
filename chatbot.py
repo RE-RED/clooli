@@ -86,7 +86,7 @@ async def on_message(msg):
     else:
         #
         #  Nos estados seguintes, a resposta padrão de HAL:
-        await msg.channel.send('I\'m sorry Dave, I\'m afraid I can\'t do that.')
+        await msg.channel.send('Durante o jogo, digite "Seguir" para continuar a hostória, e "Retornar" para voltar a frase anterior.')
 
 
 bot.run(getenv('DISCORD_TOKEN'))
