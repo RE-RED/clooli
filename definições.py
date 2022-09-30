@@ -168,6 +168,34 @@ estados = {
             '[rR]etornar?': 22
         }
     },
+    24: {
+        'frases': ['Quando vi, já estavam por toda parte, muitos tiveram contato com a neblina, e eu não sabia para onde correr. A neblina avançava muito rápido então não adiantaria correr. Meu colégio é subindo o morro, lá devo ficar protegido.'],
+        'proximos_estados': {
+            '[sS]eguir?': 25,
+            '[rR]etornar?': 23
+        }
+    },
+    25: {
+        'frases': ['Ao chegar lá você encontra outros que também estavam fugindo da neblina e daquelas pessoas. Mas a escola está trancada. Os portões estão fechados e não há entradas visíveis. Então você decide escalar os portões, dentro estará mais seguro.'],
+        'proximos_estados': {
+            '[sS]eguir?': 26,
+            '[rR]etornar?': 24
+        }
+    },
+    26: {
+        'frases': ['Os demais te seguiram.'],
+        'proximos_estados': {
+            '[sS]eguir?': 27,
+            '[rR]etornar?': 25
+        }
+    },
+    25: {
+        'frases': [''],
+        'proximos_estados': {
+            '[sS]eguir?': 26,
+            '[rR]etornar?': 24
+        }
+    },
     21: {
         'frases': ['Reiniciar'],
         'proximos_estados': {

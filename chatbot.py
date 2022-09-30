@@ -19,7 +19,7 @@ load_dotenv()
 # Definir o perfil do bot: ler mensagens.
 intents = discord.Intents.default()
 intents.message_content = True
-bot = commands.Bot(intents=intents, command_prefix='')
+bot = commands.Bot(intents=inAo chegar lá você encontra outros que também estavam fugindo da neblina e daquelas pessoas. Mas a escola está trancada. Os portões estão fechados e não há entradas visíveis. Então você decide escalar os portões, dentro estará mais seguro.tents, command_prefix='')
 
 
 @bot.event
