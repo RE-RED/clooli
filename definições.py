@@ -72,7 +72,7 @@ estados = {
     10: {
         'frases': ['Mãe:\n - Eu passei naquela entrevista, e começo hoje!'],
         'proximos_estados': {
-            '[sS]eguir?': 1,
+            '[sS]eguir?': 11,
             '[rR]etornar?': 9
         }
     },
