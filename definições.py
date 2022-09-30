@@ -166,6 +166,8 @@ estados = {
         'proximos_estados': {
             '[sS]eguir?': 24,
             '[rR]etornar?': 22
+        }
+    },
     21: {
         'frases': ['Reiniciar'],
         'proximos_estados': {
