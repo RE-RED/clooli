@@ -1,25 +1,18 @@
-# Dicionários do jogo
-from definições import estados, partidas
-#
-# Discord
+from definições import frases, estados, partidas
 import discord
 from discord.ext import commands
-#
-# Aleatoriedade
 from random import choice
-#
-# Expressões regulares
 from re import fullmatch
-#
-# Variáveis de ambiente
 from os import getenv
+from os.path import exists
 from dotenv import load_dotenv
+
 load_dotenv()
 
-# Definir o perfil do bot: ler mensagens.
 intents = discord.Intents.default()
 intents.message_content = True
-bot = commands.Bot(intents=inAo chegar lá você encontra outros que também estavam fugindo da neblina e daquelas pessoas. Mas a escola está trancada. Os portões estão fechados e não há entradas visíveis. Então você decide escalar os portões, dentro estará mais seguro.tents, command_prefix='')
+prefix = '@'
+bot = commands.Bot(intents=intents, command_prefix=prefix)
 
 
 @bot.event
@@ -30,63 +23,76 @@ async def on_ready():
 @bot.event
 async def on_message(msg):
     #
-    # Armazenar o autor da mensagem.
+    # Testar se o autor é um bot (msg.author.bot é verdadeiro)
+    # e, se for, simplesmente ignorar a mensagem
+    if msg.author.bot:
+        return
     autor = msg.author.id
-
-    # Verificar se a mensagem não tem o próprio bot como autor.
-    if autor == bot.application_id:
+    #
+    # Filtrar comando por prefixo
+    if msg.content.strip()[0] == prefix:
+        mensagem = msg.content.strip()[1:]
+    else:
         return
     #
-    # Verificar se o jogador ainda não começou a partida,
-    # o que significa que precisa colocá-lo no estado zero (0).
+    # Garantir que o autor tem dados de partida
     if autor not in partidas:
-        partidas[autor] = 0
-    #
-    # Em ordem de operação:
-    # 0) Obter o estado atual do jogador:
-    #    partidas[autor]
-    # 1) Obter a definição completa desse estado:
-    #    estados[partidas[autor]]
-    estado_do_jogador = estados[partidas[autor]]
-    #
-    # 3) Filtrar desse estado apenas a lista de próximos estados:
-    #    estados_do_jogador['proximos_estados']
-    # 4) Obter a lista completa dos próximos estados:
-    #    estado_de_jogador['proximos_estados'].items()
-    # 5) Separar chave e valor da lista completa:
-    for key, value in estado_do_jogador['proximos_estados'].items():
         #
-        # Comparar a frase do jogador com a chave usando expressões regulares:
-        if fullmatch(key, msg.content):
-            #
-            # Atualizar o estado do jogador,
-            # e para isso é usado o conteúdo da mensagem como valor do dicionário:
-            partidas[autor] = value
-            #
-            # A definição completa do estado do jogador,
-            # por consequência, também é atualizada
-            estado_do_jogador = estados[partidas[autor]]
-            #
-            # Enviar para o jogador a mensagem do estado (já atualizado)
-            #
-            # Em ordem de operação:
-            # 0) Filtrar do estado do jogador apenas a lista de frases:
-            #    estado_do_jogador['frases']
-            # 1) Sortear uma frase dessa lista:
-            #   choice(estado_do_jogador['frases'])
-            await msg.channel.send(choice(estado_do_jogador['frases']))
-            #
-            # Retonar a função, já que a resposta ao jogador já foi dada.
+        # Jogador começa no estado 0 com duas chaves
+        partidas[autor] = {
+            'estado': 0
+        }
+    #
+    # Testar se o canal é pvt (msg.channel.type.name == 'private')
+    # e, se for, avisar o jogador e continua o jogo sem áudio
+    if msg.channel.type.name == 'private':
+        # Avisar ao jogador apenas quando o estado for 0
+        if(partidas[autor]['estado'] == 0):
+            await msg.channel.send(frases['canal_privado'])
+            await msg.channel.send(frases['sem_canal_de_voz'])
+            partidas[autor]['canal_de_voz'] = None
+    #
+    # Testar se a mensagem foi mandada em um chat de servidor
+    # se sim, testar se o jogador está em canal de voz,
+    # caso não esteja convidá-lo a entrar em um.
+    if msg.channel.type.name != 'private':
+        if msg.author.voice:
+            if msg.guild.me not in msg.author.voice.channel.members:
+                partidas[autor]['canal_de_voz'] = await msg.author.voice.channel.connect()
+            canal_de_voz = partidas[autor]['canal_de_voz']
+        else:
+            await msg.channel.send(frases['sem_canal_de_voz'])
             return
     #
-    # Caso contrário, avisar que a mensagem não avança no jogo.
-    # Se o jogador ainda estiver no estado, ajudar com uma dica:
-    if partidas[autor] == 0:
+    # Criar variáveis locais para melhorar legibilidade do código
+    estado_do_jogador = estados[partidas[autor]['estado']]
+    #
+    # Varrer os possíveis próximos estados para validar com a mensagem do usuário
+    for key, value in estado_do_jogador['proximos_estados'].items():
+        if fullmatch(key, mensagem):
+            #
+                # Se houver um som referente ao estado,
+                # toca no canal de voz do jogador
+                if msg.channel.type.name != 'private':
+                    arquivo_de_som = str(value) + '.mp3'
+                    if exists(arquivo_de_som):
+                        #
+                        # Conectar no canal de áudio e emitir o som
+                        som_opus = await discord.FFmpegOpusAudio.from_probe(arquivo_de_som)
+                        canal_de_voz.play(som_opus)
+                #
+                # Se houver uma imagem referente ao estado, enviar
+                arquivo_de_imagem = str(value) + '.png'
+                if exists(arquivo_de_imagem):
+                    await msg.channel.send(file=discord.File(arquivo_de_imagem))
+                #
+                # Criar uma lista de frases usando o delimitador '|' e enviar uma a uma
+                [await msg.channel.send(i) for i in choice(estados[value]['frases']).split('|')]
+    #
+    # Sempre responder ao usuário (dica ou não)
+    if partidas[autor]['estado'] == 0:
         await msg.channel.send(choice(estado_do_jogador['frases']))
     else:
-        #
-        #  Nos estados seguintes, a resposta padrão de HAL:
-        await msg.channel.send('Durante o jogo, digite "Seguir" para continuar a hostória, e "Retornar" para voltar a frase anterior.')
-
+        await msg.channel.send(frases['erro'])
 
 bot.run(getenv('DISCORD_TOKEN'))
