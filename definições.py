@@ -134,7 +134,7 @@ estados = {
         }
     },
     19: {
-        'fras'inventario': set()es': ['Mas estranhamente a neblina se aproxima cada vez mais. Uma moça que estava perto acaba tendo contato'],
+        'frases': ['Mas estranhamente a neblina se aproxima cada vez mais. Uma moça que estava perto acaba tendo contato'],
         'proximos_estados': {
             '[sS]eguir?': 20,
             '[rR]etornar?': 18
