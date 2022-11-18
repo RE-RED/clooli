@@ -71,6 +71,9 @@ async def on_message(msg):
     for key, value in estado_do_jogador['proximos_estados'].items():
         if fullmatch(key, mensagem):
             #
+            # Atualiza o estado do jogador
+            partidas[autor]['estado'] = value
+            #
             # Se houver um som referente ao estado,
             # toca no canal de voz do jogador
             if msg.channel.type.name != 'private':
