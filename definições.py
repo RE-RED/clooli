@@ -1,9 +1,10 @@
 # Dicionário com as definições da máquina de estados do jogo.
 frases = {
-    'inventario_insuficiente': 'Sem os recursos necessários para avançar.',
+    'reiniciado': 'Jogo reiniciado (progresso do jogador apagado).',
+    'saindo': 'Daisy\nDaisy',
     'canal_privado': 'Não é possível reproduzir áudio em canais privados.',
     'sem_canal_de_voz': 'Por favor, esteja em um canal de voz para ter a imersão completa do jogo.',
-    'erro': 'Durante o jogo, digite "Seguir" para continuar a história, e "Retornar" para voltar a frase anterior.'
+    'erro': 'Durante o jogo, digite "Seguir" para continuar a hostória, e "Retornar" para voltar a frase anterior.'
 }
 estados = {
     0: {
@@ -211,4 +212,4 @@ estados = {
 }
 
 # Dicionário com os estados correntes de cada jogador.
-partidas = {}
+canais_de_voz = {}
