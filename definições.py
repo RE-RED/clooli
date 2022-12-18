@@ -234,7 +234,7 @@ estados = {
     32: {
         'frases': ['Sr. Antônio - Então volte logo, sua mãe sempre se preocupa com você zanzando por ai.'],
         'proximos_estados': {
-            '25[sS]eguir?': 33,
+            '[sS]eguir?': 33,
             '[rR]etornar?': 31
         }
     },
